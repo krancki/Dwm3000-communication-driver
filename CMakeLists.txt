@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.18.4)
 
-project(KRANCKI)
+project(dwm3000-communication-driver)
 
 add_subdirectory(src/main)
 

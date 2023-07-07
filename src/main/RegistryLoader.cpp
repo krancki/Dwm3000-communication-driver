@@ -932,3 +932,154 @@ void load(LDO_RLOAD *ldoRload)
     delete readedValue.dataBuffor;
 }
 // 8.2.8.6
+
+void load(SAR_CTRL *sarCtrl)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(sar_ctrl_def.registry));
+    sarCtrl->sarStart = dataExtractorBool(readedValue, sar_ctrl_def.sarStart);
+
+    delete readedValue.dataBuffor;
+}
+void load(SAR_STATUS *sarStatus)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(sar_status_def.registry));
+    sarStatus->sarDone = dataExtractorBool(readedValue, sar_status_def.sarDone);
+
+    delete readedValue.dataBuffor;
+}
+void load(SAR_READING *sarReading)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(sar_reading_def.registry));
+    sarReading->sarLvbat = dataExtractorChar(readedValue, sar_reading_def.sarLvbat);
+    sarReading->sarLtemp = dataExtractorChar(readedValue, sar_reading_def.sarLtemp);
+
+    delete readedValue.dataBuffor;
+}
+void load(SAR_WAKE_RD *sarWakeRd)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(sar_wake_rd_def.registry));
+    sarWakeRd->sarWvbat = dataExtractorChar(readedValue, sar_wake_rd_def.sarWvbat);
+    sarWakeRd->sarWtemp = dataExtractorChar(readedValue, sar_wake_rd_def.sarWtemp);
+}
+void load(PGC_CTRL *pgcCtrl)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(pgc_ctrl_def.registry));
+    pgcCtrl->pgStart = dataExtractorBool(readedValue, pgc_ctrl_def.pgStart);
+    pgcCtrl->pgcAutoCal = dataExtractorBool(readedValue, pgc_ctrl_def.pgcAutoCal);
+    pgcCtrl->pgcTmeas = dataExtractorChar(readedValue, pgc_ctrl_def.pgcTmeas);
+
+    delete readedValue.dataBuffor;
+}
+void load(PGC_STATUS *pgcStatus)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(pgc_status_def.registry));
+    pgcStatus->pgDelayCnt = dataExtractorShort(readedValue, pgc_status_def.pgDelayCnt);
+    pgcStatus->autocalDone = dataExtractorBool(readedValue, pgc_status_def.autocalDone);
+
+    delete readedValue.dataBuffor;
+}
+void load(PG_TEST *pgTest)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(pg_test_def.registry));
+    pgTest->value = dataExtractorShort(readedValue, pg_test_def.value);
+
+    delete readedValue.dataBuffor;
+}
+void load(PG_CAL_TARGET *pgCalTarget)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(pg_cal_target_def.registry));
+    pgCalTarget->pgTarget = dataExtractorShort(readedValue, pg_cal_target_def.pgTarget);
+
+    delete readedValue.dataBuffor;
+}
+
+// 0x09 – Frequency synthesiser control block
+void load(PLL_CFG *pllCfg)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(pll_cfg_def.registry));
+    pllCfg->value = dataExtractorShort(readedValue, pll_cfg_def.value);
+    delete readedValue.dataBuffor;
+}
+
+void load(PLL_CC *pllCc)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(pll_cc_def.registry));
+    pllCc->ch9Code = dataExtractorChar(readedValue, pll_cc_def.ch9Code);
+    pllCc->ch5Code = dataExtractorShort(readedValue, pll_cc_def.ch5Code);
+    delete readedValue.dataBuffor;
+}
+
+void load(PLL_CAL *pllCal)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(pll_cal_def.registry));
+    pllCal->useOld = dataExtractorBool(readedValue, pll_cal_def.useOld);
+    pllCal->pllCfgLd = dataExtractorChar(readedValue, pll_cal_def.pllCfgLd);
+    pllCal->calEn = dataExtractorBool(readedValue, pll_cal_def.calEn);
+    delete readedValue.dataBuffor;
+}
+
+void load(XTAL *xtal)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(xtal_def.registry));
+    xtal->xtalTrim = dataExtractorChar(readedValue, xtal_def.xtalTrim);
+    delete readedValue.dataBuffor;
+}
+
+// 0x0A – Always-on system control interface
+void load(AON_DIG_CFG *aonDigCfg)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(aon_dig_cfg_def.registry));
+    aonDigCfg->onwAonDld = dataExtractorBool(readedValue, aon_dig_cfg_def.onwAonDld);
+    aonDigCfg->onwRunSar = dataExtractorBool(readedValue, aon_dig_cfg_def.onwRunSar);
+    aonDigCfg->onwGo2Idle = dataExtractorBool(readedValue, aon_dig_cfg_def.onwGo2Idle);
+    aonDigCfg->onwGo2rx = dataExtractorBool(readedValue, aon_dig_cfg_def.onwGo2rx);
+    aonDigCfg->onwPgfcal = dataExtractorBool(readedValue, aon_dig_cfg_def.onwPgfcal);
+
+    delete readedValue.dataBuffor;
+}
+void load(AON_CTRL *aonCtrl)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(aon_ctrl_def.registry));
+    aonCtrl->restore = dataExtractorBool(readedValue, aon_ctrl_def.restore);
+    aonCtrl->save = dataExtractorBool(readedValue, aon_ctrl_def.save);
+    aonCtrl->cfgUpload = dataExtractorBool(readedValue, aon_ctrl_def.cfgUpload);
+    aonCtrl->dcaRead = dataExtractorBool(readedValue, aon_ctrl_def.dcaRead);
+    aonCtrl->dcaWrite = dataExtractorBool(readedValue, aon_ctrl_def.dcaWrite);
+    aonCtrl->dcaWriteHi = dataExtractorBool(readedValue, aon_ctrl_def.dcaWriteHi);
+    aonCtrl->dcaEnab = dataExtractorBool(readedValue, aon_ctrl_def.dcaEnab);
+
+    delete readedValue.dataBuffor;
+}
+void load(AON_RDATA *aonRdata)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(aon_rdata_def.registry));
+    aonRdata->value = dataExtractorChar(readedValue, aon_rdata_def.value);
+
+    delete readedValue.dataBuffor;
+}
+void load(AON_ADDR *aonAddr)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(aon_addr_def.registry));
+    aonAddr->value = dataExtractorShort(readedValue, aon_addr_def.value);
+
+    delete readedValue.dataBuffor;
+}
+void load(AON_WDATA *aonWdata)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(aon_wdata_def.registry));
+    aonWdata->value = dataExtractorChar(readedValue, aon_wdata_def.value);
+
+    delete readedValue.dataBuffor;
+}
+void load(AON_CFG *aonCfg)
+{
+    ReadedRegistryData readedValue = readValue(ReadOperand(aon_cfg_def.registry));
+    aonCfg->sleepEn = dataExtractorBool(readedValue, aon_cfg_def.sleepEn);
+    aonCfg->wakeCnt = dataExtractorBool(readedValue, aon_cfg_def.wakeCnt);
+    aonCfg->broutEn = dataExtractorBool(readedValue, aon_cfg_def.broutEn);
+    aonCfg->wakeCsn = dataExtractorBool(readedValue, aon_cfg_def.wakeCsn);
+    aonCfg->wakeWup = dataExtractorBool(readedValue, aon_cfg_def.wakeWup);
+    aonCfg->presSleep = dataExtractorBool(readedValue, aon_cfg_def.presSleep);
+
+    delete readedValue.dataBuffor;
+}

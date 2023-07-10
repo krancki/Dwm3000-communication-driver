@@ -2,6 +2,7 @@ cmake_minimum_required (VERSION 3.18.4)
 
 option(USE_RASPBERRY_PI "Use WiringPi on RaspberryPi" OFF)
 
+
 project(dwm3000-communication-driver)
 
 add_subdirectory(src/main)

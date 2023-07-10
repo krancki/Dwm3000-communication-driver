@@ -2,9 +2,10 @@
 
 #include "../Commands/FastCommandDefinition.hpp"
 
-struct FastCommandTransactionHeader {
-  char octet;
-  FastCommandTransactionHeader(char _octet) { octet = _octet; }
+struct FastCommandTransactionHeader
+{
+    unsigned char octet;
+    FastCommandTransactionHeader(unsigned char _octet) { octet = _octet; }
 };
 
 FastCommandTransactionHeader prepareFastTransactionHeader(

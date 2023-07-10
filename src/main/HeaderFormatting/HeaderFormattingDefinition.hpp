@@ -1,3 +1,7 @@
 #pragma once
 
-enum ReadWriteMode { READ, WRITE };
+enum ReadWriteMode
+{
+    READ,
+    WRITE
+};

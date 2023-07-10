@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 3.18.4)
 
 option(USE_RASPBERRY_PI "Use WiringPi on RaspberryPi" OFF)
+option(USE_SPI_STUB "Use SPI stub" ON)
 
 project(dwm3000-communication-driver)
 

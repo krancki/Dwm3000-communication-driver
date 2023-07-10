@@ -6,6 +6,9 @@ if(USE_RASPBERRY_PI)
     list(APPEND SPI_LIB_SOURCES RaspberryPiWiringPi.cpp)
 endif()
 
+if(USE_SPI_STUB)
+list(APPEND SPI_LIB_SOURCES StubSpiConnector.cpp)
+endif()
 
 add_library(${SPI_LIB_NAME} ${SPI_LIB_SOURCES})
 set_target_properties(${SPI_LIB_NAME} PROPERTIES LINKER_LANGUAGE CXX)
